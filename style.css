@@ -1,0 +1,145 @@
+/* style.css */
+
+/* ----------------------------------------------------- */
+/* 全体的なスタイルとbody設定 */
+/* ----------------------------------------------------- */
+body {
+    font-family: sans-serif; /* 全体フォント */
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6; /* 背景色 */
+    
+    /* bodyはチャットコンテナが自由に動けるようにFlexboxの中央寄せをやめる */
+    display: block; 
+    min-height: 100vh; /* 画面全体の高さを確保 */
+}
+
+/* ----------------------------------------------------- */
+/* チャットコンテナ (ドラッグ対象) */
+/* ----------------------------------------------------- */
+.chat-container {
+    max-width: 600px; /* 最大幅 */
+    width: 100%; /* 親要素に対する幅 */
+    background-color: white; /* 背景色 */
+    border-radius: 8px; /* 角の丸み */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 影 */
+    padding: 20px;
+    box-sizing: border-box; /* パディングを含めて幅を計算 */
+
+    /* ★★★ ドラッグ移動に必要なスタイル ★★★ */
+    position: absolute; /* 親ウィンドウに対して浮いた状態にする */
+    top: 50px; /* 初期の上からの位置 */
+    
+    cursor: grab;
+    z-index: 1000;
+}
+
+/* ----------------------------------------------------- */
+/* ヘッダー */
+/* ----------------------------------------------------- */
+h1 {
+    text-align: center; /* 中央寄せ */
+    color: #333; /* 文字色 */
+    margin-bottom: 20px; /* 下のマージン */
+}
+
+/* ----------------------------------------------------- */
+/* メッセージリストエリア */
+/* ----------------------------------------------------- */
+.message-list {
+    height: 400px; /* 高さを固定 */
+    overflow-y: auto; /* 高さを超えたらスクロール可能に */
+    border: 1px solid #ddd; /* ボーダー */
+    border-radius: 4px; /* 角の丸み */
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex; /* Flexboxでメッセージを配置 */
+    flex-direction: column; /* メッセージを縦方向に並べる */
+}
+
+/* ----------------------------------------------------- */
+/* 個々のメッセージスタイル */
+/* ----------------------------------------------------- */
+.message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px; /* 丸みのある吹き出し */
+    max-width: 80%; /* 最大幅 */
+    word-wrap: break-word; /* 長い単語を折り返す */
+    line-height: 1.5; /* 行の高さ */
+}
+
+/* ユーザーメッセージ (右寄せ、青背景) */
+.message.user {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto; /* 右寄せ */
+    border-bottom-right-radius: 5px; /* 右下の角を少し直角に */
+}
+
+/* AIメッセージ (左寄せ、灰色背景) */
+.message.ai {
+    background-color: #e2e3e5;
+    color: #333;
+    margin-right: auto; /* 左寄せ */
+    border-bottom-left-radius: 5px; /* 左下の角を少し直角に */
+}
+
+/* ----------------------------------------------------- */
+/* ローディングメッセージ */
+/* ----------------------------------------------------- */
+.loading-message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    max-width: 80%;
+    background-color: #f0f0f0;
+    color: #555;
+    text-align: center;
+    align-self: flex-start; /* 左寄せ */
+    margin-right: auto;
+    font-style: italic; /* 斜体 */
+}
+
+/* ----------------------------------------------------- */
+/* 入力エリア */
+/* ----------------------------------------------------- */
+.input-area {
+    display: flex; /* Flexboxで入力フィールドとボタンを並べる */
+    gap: 10px; /* 要素間のスペース */
+}
+
+.input-area input {
+    flex-grow: 1; /* 利用可能なスペースを全て占める */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* 丸みのある入力欄 */
+    font-size: 16px;
+    outline: none; /* フォーカス時のアウトラインを削除 */
+}
+
+.input-area input:focus {
+    border-color: #007bff; /* フォーカス時のボーダー色 */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* フォーカス時の影 */
+}
+
+.input-area button {
+    padding: 12px 20px;
+    background-color: #28a745; /* ボタンの背景色 */
+    color: white; /* 文字色 */
+    border: none; /* ボーダーなし */
+    border-radius: 25px; /* 丸みのあるボタン */
+    cursor: pointer; /* カーソルをポインターに */
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out; /* ホバー時のトランジション */
+}
+
+.input-area button:hover {
+    background-color: #218838; /* ホバー時の背景色 */
+}
+
+/* ボタン無効時のスタイル */
+.input-area button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed; /* 無効時はカーソルを変更 */
+}
